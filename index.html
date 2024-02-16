@@ -1,1 +1,53 @@
-Hello world!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Choices</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .button-container {
+      margin-top: 100px;
+    }
+    .choice-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .choice-button:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Choose an Option</h1>
+  <div class="button-container">
+    <button class="choice-button" id="option1">Option 1</button>
+    <button class="choice-button" id="option2">Option 2</button>
+  </div>
+
+  <script>
+    // Function to handle button clicks
+    function handleClick(option) {
+      alert("You chose: " + option);
+    }
+
+    // Add event listeners to buttons
+    document.getElementById("option1").addEventListener("click", function() {
+      handleClick("Option 1");
+    });
+
+    document.getElementById("option2").addEventListener("click", function() {
+      handleClick("Option 2");
+    });
+  </script>
+</body>
+</html>
