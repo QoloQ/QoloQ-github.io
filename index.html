@@ -31,6 +31,7 @@
   <div id="question-container">
     <h1 id="question-text"></h1>
     <div class="button-container" id="options-container"></div>
+    <img src="" alt="Image" id="image-container" style="display: none; max-width: 80%; margin-top: 20px;">
   </div>
 
   <script>
@@ -122,7 +123,9 @@
         currentQuestion = option.nextQuestion;
         populateQuestion();
       } else {
-        alert("You chose: " + option.text);
+        document.getElementById("options-container").style.display = "none";
+        document.getElementById("image-container").src = "dog.jpeg";
+        document.getElementById("image-container").style.display = "block";
       }
     }
 
