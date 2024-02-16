@@ -31,13 +31,14 @@
   <div id="question-container">
     <h1 id="question-text"></h1>
     <div class="button-container" id="options-container"></div>
+    <div id="result-text" style="display: none; margin-top: 20px;">This is your result!</div>
     <img src="" alt="Image" id="image-container" style="display: none; max-width: 80%; margin-top: 20px;">
   </div>
 
   <script>
     // Define the question tree
     const questionTree = {
-      question: "Which of the following do you enjoy doing?",
+      question: "WHAT of the following do you enjoy doing?",
       options: [
         {
           text: "Reading",
@@ -103,6 +104,10 @@
     // Function to populate the question and options
     function populateQuestion() {
       document.getElementById("question-text").textContent = currentQuestion.question;
+      document.getElementById("result-text").style.display = "none";
+      document.getElementById("options-container").style.display = "block";
+      document.getElementById("image-container").style.display = "none";
+
       const optionsContainer = document.getElementById("options-container");
       optionsContainer.innerHTML = ""; // Clear previous options
 
@@ -123,7 +128,9 @@
         currentQuestion = option.nextQuestion;
         populateQuestion();
       } else {
+        document.getElementById("question-text").style.display = "none";
         document.getElementById("options-container").style.display = "none";
+        document.getElementById("result-text").style.display = "block";
         document.getElementById("image-container").src = "dog.jpeg";
         document.getElementById("image-container").style.display = "block";
       }
