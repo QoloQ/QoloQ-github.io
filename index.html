@@ -16,12 +16,12 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 90vh; /* Set body height to viewport height */
+      height: 100vh; /* Set body height to viewport height */
     }
     .button-container {
-      margin-top: 100px;
+      margin-top: 20px;
     }
-    .choice-button, #again-button {
+    .choice-button {
       padding: 20px;
       font-size: 16px;
       margin: 20px;
@@ -29,11 +29,28 @@
       border: 1px solid #ccc;
       background-color: #f9f9f9;
       border-radius: 5px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s; /* Add background-color transition */
       width: 200px;
       box-sizing: border-box;
     }
-    .choice-button:hover, #again-button:hover {
+    .choice-button:hover {
+      background-color: #e0e0e0;
+    }
+    #again-button {
+      padding: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      transition: opacity 1s; /* Add opacity transition */
+      width: 200px;
+      box-sizing: border-box;
+      opacity: 0; /* Initially hide the button */
+      margin: auto; /* Center the button */
+      position: relative; /* Add position relative */
+    }
+    #again-button:hover {
       background-color: #e0e0e0;
     }
     #result-text, #question-text {
@@ -44,7 +61,7 @@
     }
     #image-container {
       display: none;
-      margin: 40px auto;
+      margin: 20px auto;
       max-width: 80%;
       opacity: 0; /* Initially hide the image */
       transition: opacity 1s; /* Add transition effect */
@@ -53,21 +70,6 @@
       max-width: 100%;
       display: block;
       margin: auto;
-    }
-    #again-button {
-      display: none;
-      margin: 20px auto;
-      padding: 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      background-color: #f9f9f9;
-      color: #000;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    #again-button:hover {
-      background-color: #e0e0e0;
     }
   </style>
 </head>
@@ -184,7 +186,12 @@
           imageContainer.style.opacity = "1"; // Show the image slowly
         }, 100);
         setTimeout(() => {
-          document.getElementById("again-button").style.display = "block"; // Show the "Again" button after 2 seconds
+          const againButton = document.getElementById("again-button");
+          againButton.style.display = "block"; // Show the "Again" button after 2 seconds
+          againButton.style.opacity = "0"; // Reset opacity to 0
+          setTimeout(() => {
+            againButton.style.opacity = "1"; // Show the button slowly
+          }, 100);
         }, 2000);
       }
     }
