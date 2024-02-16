@@ -8,13 +8,16 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background-image: url('background.jpg'); /* Replace 'background.jpg' with the path to your JPEG background image */
+      background-image: url('background.jpg');
+      background-size: cover; /* Ensure the background image covers the entire viewport */
+      background-position: center;
+      background-attachment: fixed; /* Keep the background fixed while scrolling */
     }
     .button-container {
       margin-top: 100px;
     }
     .choice-button, #again-button {
-      padding: 20px; /* Padding for consistent button width */
+      padding: 20px;
       font-size: 16px;
       margin: 20px;
       cursor: pointer;
@@ -22,8 +25,8 @@
       background-color: #f9f9f9;
       border-radius: 5px;
       transition: background-color 0.3s;
-      width: 200px; /* Set initial width */
-      box-sizing: border-box; /* Include padding in width calculation */
+      width: 200px;
+      box-sizing: border-box;
     }
     .choice-button:hover, #again-button:hover {
       background-color: #e0e0e0;
@@ -31,28 +34,28 @@
     #result-text, #question-text {
       font-size: 24px;
       margin-top: 20px;
-      font-family: Arial, sans-serif; /* Ensure the font matches */
-      font-weight: bold; /* Make the text bold */
+      font-family: Arial, sans-serif;
+      font-weight: bold;
     }
     #image-container {
       display: block;
-      margin: 20px auto; /* Center the image horizontally */
+      margin: 20px auto;
       max-width: 80%;
     }
     #again-button {
       display: block;
-      margin: 20px auto; /* Center the button horizontally */
+      margin: 20px auto;
       padding: 20px;
       font-size: 16px;
       cursor: pointer;
       border: none;
-      background-color: #f9f9f9; /* Set background color to match other buttons */
-      color: #000; /* Set text color to black */
+      background-color: #f9f9f9;
+      color: #000;
       border-radius: 5px;
       transition: background-color 0.3s;
     }
     #again-button:hover {
-      background-color: #e0e0e0; /* Darken background color on hover */
+      background-color: #e0e0e0;
     }
   </style>
 </head>
@@ -67,7 +70,7 @@
 
   <script>
     const questionTree = {
-      question: "Whichssss of the following do you enjoy doing?",
+      question: "Whichhhh of the following do you enjoy doing?",
       options: [
         {
           text: "Reading",
