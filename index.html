@@ -12,9 +12,14 @@
       background-size: cover; 
       background-position: center;
       background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Set body height to viewport height */
     }
     .button-container {
-      margin-top: 100px;
+      margin-top: 150px;
     }
     .choice-button, #again-button {
       padding: 20px;
@@ -39,13 +44,18 @@
     }
     #image-container {
       display: none;
-      margin: 20px auto;
+      margin: 40px auto;
       max-width: 80%;
       opacity: 0; /* Initially hide the image */
       transition: opacity 1s; /* Add transition effect */
     }
-    #again-button {
+    #image-container img {
+      max-width: 100%;
       display: block;
+      margin: auto;
+    }
+    #again-button {
+      display: none;
       margin: 20px auto;
       padding: 20px;
       font-size: 16px;
@@ -66,8 +76,8 @@
     <h1 id="question-text"></h1>
     <div class="button-container" id="options-container"></div>
     <div id="result-text" style="display: none;"><strong>This is your result!</strong></div>
-    <div id="image-container"><img src="" alt="Image" style="max-width: 100%;"></div>
-    <button id="again-button" style="display: none;">Again</button>
+    <div id="image-container"><img src="" alt="Image"></div>
+    <button id="again-button">Again</button>
   </div>
 
   <script>
@@ -82,7 +92,7 @@
               {
                 text: "Fantasy",
                 nextQuestion: {
-                  question: "Which mythical creature do you find most fascinating?",
+                  question: "Which 000 mythical creature do you find most fascinating?",
                   options: [
                     { text: "Dragons", nextQuestion: null },
                     { text: "Unicorns", nextQuestion: null }
