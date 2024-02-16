@@ -9,9 +9,9 @@
       font-family: Arial, sans-serif;
       text-align: center;
       background-image: url('background.jpg');
-      background-size: cover; /* Ensure the background image covers the entire viewport */
+      background-size: cover; 
       background-position: center;
-      background-attachment: fixed; /* Keep the background fixed while scrolling */
+      background-attachment: fixed;
     }
     .button-container {
       margin-top: 100px;
@@ -38,9 +38,11 @@
       font-weight: bold;
     }
     #image-container {
-      display: block;
+      display: none;
       margin: 20px auto;
       max-width: 80%;
+      opacity: 0; /* Initially hide the image */
+      transition: opacity 1s; /* Add transition effect */
     }
     #again-button {
       display: block;
@@ -64,13 +66,13 @@
     <h1 id="question-text"></h1>
     <div class="button-container" id="options-container"></div>
     <div id="result-text" style="display: none;"><strong>This is your result!</strong></div>
-    <img src="" alt="Image" id="image-container" style="display: none;">
+    <div id="image-container"><img src="" alt="Image" style="max-width: 100%;"></div>
     <button id="again-button" style="display: none;">Again</button>
   </div>
 
   <script>
     const questionTree = {
-      question: "Whichhhh of the following do you enjoy doing?",
+      question: "Which of the following do you enjoy doing?",
       options: [
         {
           text: "Reading",
@@ -163,8 +165,14 @@
         document.getElementById("question-text").style.display = "none";
         document.getElementById("options-container").style.display = "none";
         document.getElementById("result-text").style.display = "block";
-        document.getElementById("image-container").src = "dog.jpg";
-        document.getElementById("image-container").style.display = "block";
+        const imageContainer = document.getElementById("image-container");
+        const image = imageContainer.querySelector("img");
+        image.src = "dog.jpg";
+        imageContainer.style.display = "block";
+        imageContainer.style.opacity = "0"; // Reset opacity to 0
+        setTimeout(() => {
+          imageContainer.style.opacity = "1"; // Show the image slowly
+        }, 100);
         document.getElementById("again-button").style.display = "block";
       }
     }
