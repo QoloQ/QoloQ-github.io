@@ -36,25 +36,61 @@
   <script>
     // Define the question tree
     const questionTree = {
-      question: "Which of the following animals do you like?",
+      question: "Which of the following do you enjoy doing?",
       options: [
         {
-          text: "Dogs",
+          text: "Reading",
           nextQuestion: {
-            question: "What breed of dogs do you prefer?",
+            question: "What genre do you prefer?",
             options: [
-              { text: "Labrador Retriever", nextQuestion: null },
-              { text: "German Shepherd", nextQuestion: null }
+              {
+                text: "Fantasy",
+                nextQuestion: {
+                  question: "Which mythical creature do you find most fascinating?",
+                  options: [
+                    { text: "Dragons", nextQuestion: null },
+                    { text: "Unicorns", nextQuestion: null }
+                  ]
+                }
+              },
+              {
+                text: "Mystery",
+                nextQuestion: {
+                  question: "Do you enjoy solving puzzles?",
+                  options: [
+                    { text: "Yes", nextQuestion: null },
+                    { text: "No", nextQuestion: null }
+                  ]
+                }
+              }
             ]
           }
         },
         {
-          text: "Cats",
+          text: "Painting",
           nextQuestion: {
-            question: "Do you prefer indoor or outdoor cats?",
+            question: "What's your favorite painting style?",
             options: [
-              { text: "Indoor", nextQuestion: null },
-              { text: "Outdoor", nextQuestion: null }
+              {
+                text: "Impressionism",
+                nextQuestion: {
+                  question: "Which color palette do you prefer?",
+                  options: [
+                    { text: "Vibrant colors", nextQuestion: null },
+                    { text: "Soft pastels", nextQuestion: null }
+                  ]
+                }
+              },
+              {
+                text: "Abstract",
+                nextQuestion: {
+                  question: "Do you prefer structured or chaotic compositions?",
+                  options: [
+                    { text: "Structured", nextQuestion: null },
+                    { text: "Chaotic", nextQuestion: null }
+                  ]
+                }
+              }
             ]
           }
         }
