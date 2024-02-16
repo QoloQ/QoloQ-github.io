@@ -183,7 +183,9 @@
         setTimeout(() => {
           imageContainer.style.opacity = "1"; // Show the image slowly
         }, 100);
-        document.getElementById("again-button").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("again-button").style.display = "block"; // Show the "Again" button after 2 seconds
+        }, 2000);
       }
     }
 
