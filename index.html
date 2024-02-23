@@ -8,7 +8,7 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background-image: url('background.jpg');
+      background-image: url('img/colorful_1920.png');
       background-size: cover; 
       background-position: center;
       background-attachment: fixed;
@@ -32,6 +32,8 @@
       transition: background-color 0.3s; /* Add background-color transition */
       width: 250px;
       box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
     }
     .choice-button:hover {
       background-color: #e0e0e0;
@@ -44,20 +46,22 @@
       background-color: #f9f9f9;
       border-radius: 5px;
       transition: opacity 1s; /* Add opacity transition */
-      width: 200px;
+      width: 350px;
       box-sizing: border-box;
       opacity: 0; /* Initially hide the button */
       margin: auto; /* Center the button */
       position: absolute; /* Position the button absolutely */
-      bottom: 60px; /* Place the button at the bottom */
+      bottom: 40px; /* Place the button at the bottom */
       left: 50%; /* Center horizontally */
       transform: translateX(-50%); /* Adjust for centering */
+      font-family: Arial, sans-serif;
+      font-weight: bold;
     }
     #again-button:hover {
       background-color: #e0e0e0;
     }
     #result-text, #question-text {
-      font-size: 24px;
+      font-size: 30px;
       margin-top: 20px;
       font-family: Arial, sans-serif;
       font-weight: bold;
@@ -85,117 +89,18 @@
     <button id="again-button">Again</button>
   </div>
 
+  <script src="questionTree.js"></script>
+
   <script>
-    const questionTree = {
-    question: "What do you prefer?",
-    options: [
-      {
-        text: "MOVEMENT",
-        nextQuestion: {
-          question: "Do you have kids?",
-          options: [
-            {
-              text: "YES",
-              nextQuestion: {
-                question: "Do you like adrenalin?",
-                options: [
-                  {
-                    text: "YES",
-                    nextQuestion: {
-                      question: "Are you more solo, or team player?",
-                      options: [
-                        {
-                          text: "SOLO",
-                          nextQuestion: "playground.jpg"
-                        },
-                        {
-                          text: "TEAM",
-                          nextQuestion: "sports.jpg"
-                        }
-                      ]
-                    },
-                  },
-                  { 
-                    text: "NO",
-                    nextQuestion: 'sports.jpg'
-                  }
-                ]
-              }
-            },
-            { //do you have kids
-              text: "NO",
-              nextQuestion: {
-                question: "Wim Hof?",
-                options: [
-                  { text: "YES", nextQuestion: 'sauna.jpg' },
-                  { 
-                    text: "NO", 
-                    nextQuestion: {
-                      question: "Boulder or Ball?",
-                      options: [
-                        {text: "Boulder", nextQuestion: "playground.jpg"},
-                        {text: "Ball", nextQuestion: "sports.jpg"}
-                      ]
-                    } 
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      {
-        text: "RELAX",
-        nextQuestion: {
-          question: "What atmosphere do you prefer?",
-          options: [
-            {
-              text: "CALM",
-              nextQuestion: {
-                question: "Indoors or Outdoors?",
-                options: [
-                  { 
-                    text: "INDOORS",
-                    nextQuestion: {
-                      question: "Book or Cook?",
-                      options: [
-                        {
-                          text: 'Book',
-                          nextQuestion: {
-                            question: 'Body, Mind or Soul?',
-                            options: [
-                              {text: 'BODY', nextQuestion: 'sauna.jpg'},
-                              {text: 'MIND', nextQuestion: 'library.jpg'},
-                              {text: 'SOUL', nextQuestion: 'temple.jpg'}
-                            ]
-                          } 
-                        },
-                        { text: 'Cook', nextQuestion: 'restaurant.jpg' }
-                      ]
-                      } 
-                  },
-                  { text: "OUTDOORS", nextQuestion: null }
-                ]
-              }
-            },
-            { // what atmosphere
-              text: "Lively",
-              nextQuestion: {
-                question: "Do you like more nature, or city?",
-                options: [
-                  { text: "City", nextQuestion: 'Do you have kids?' },
-                  { text: "Chaotic", nextQuestion: null }
-                ]
-              }
-            }
-          ]
-        }
-      }
-      ]
-    };
-
-
     let currentQuestion = questionTree;
+    console.log(questionTree.options[0].nextQuestion.question);
+
+    function getNestedQuestion(num) {
+      console.log('OOOOOO')
+      if (num === 2) {
+        return questionTree.options[0].nextQuestion.question 
+      }
+    };
 
     function populateQuestion() {
       document.getElementById("question-text").textContent = currentQuestion.question;
@@ -241,6 +146,7 @@
             againButton.style.opacity = "1"; // Show the button slowly
           }, 100);
         }, 2000);
+        
       } else {
         // If there's another question, proceed to it
         currentQuestion = option.nextQuestion;
