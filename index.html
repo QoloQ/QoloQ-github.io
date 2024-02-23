@@ -99,7 +99,8 @@
               nextQuestion: {
                 question: "Do you like adrenalin?",
                 options: [
-                  {text: "YES",
+                  {
+                    text: "YES",
                     nextQuestion: {
                       question: "Are you more solo, or team player?",
                       options: [
@@ -113,21 +114,30 @@
                         }
                       ]
                     },
-                },
+                  },
                   { 
                     text: "NO",
-                    nextQuestion: null
+                    nextQuestion: 'sports.jpg'
                   }
                 ]
               }
             },
-            {
+            { //do you have kids
               text: "NO",
               nextQuestion: {
-                question: "Do you enjoy solving puzzles?",
+                question: "Wim Hof?",
                 options: [
-                  { text: "Yes", nextQuestion: null },
-                  { text: "No", nextQuestion: null }
+                  { text: "YES", nextQuestion: 'sauna.jpg' },
+                  { 
+                    text: "NO", 
+                    nextQuestion: {
+                      question: "Boulder or Ball?",
+                      options: [
+                        {text: "Boulder", nextQuestion: "playground.jpg"},
+                        {text: "Ball", nextQuestion: "sports.jpg"}
+                      ]
+                    } 
+                  }
                 ]
               }
             }
@@ -137,24 +147,43 @@
       {
         text: "RELAX",
         nextQuestion: {
-          question: "What's your favorite painting style?",
+          question: "What atmosphere do you prefer?",
           options: [
             {
-              text: "Impressionism",
+              text: "CALM",
               nextQuestion: {
-                question: "Which color palette do you prefer?",
+                question: "Indoors or Outdoors?",
                 options: [
-                  { text: "Vibrant colors", nextQuestion: null },
-                  { text: "Soft pastels", nextQuestion: null }
+                  { 
+                    text: "INDOORS",
+                    nextQuestion: {
+                      question: "Book or Cook?",
+                      options: [
+                        {
+                          text: 'Book',
+                          nextQuestion: {
+                            question: 'Body, Mind or Soul?',
+                            options: [
+                              {text: 'BODY', nextQuestion: 'sauna.jpg'},
+                              {text: 'MIND', nextQuestion: 'library.jpg'},
+                              {text: 'SOUL', nextQuestion: 'temple.jpg'}
+                            ]
+                          } 
+                        },
+                        { text: 'Cook', nextQuestion: 'restaurant.jpg' }
+                      ]
+                      } 
+                  },
+                  { text: "OUTDOORS", nextQuestion: null }
                 ]
               }
             },
-            {
-              text: "Abstract",
+            { // what atmosphere
+              text: "Lively",
               nextQuestion: {
-                question: "Do you prefer structured or chaotic compositions?",
+                question: "Do you like more nature, or city?",
                 options: [
-                  { text: "Structured", nextQuestion: null },
+                  { text: "City", nextQuestion: 'Do you have kids?' },
                   { text: "Chaotic", nextQuestion: null }
                 ]
               }
@@ -162,8 +191,8 @@
           ]
         }
       }
-    ]
-  };
+      ]
+    };
 
 
     let currentQuestion = questionTree;
@@ -190,17 +219,15 @@
       });
     }
 
-    function handleAnswer(option, image) {
-      if (option.nextQuestion) {
-        currentQuestion = option.nextQuestion;
-        populateQuestion();
-      } else {
+    function handleAnswer(option) {
+      if (typeof option.nextQuestion === 'string') {
+        // If next question is a string (image path), show the result
         document.getElementById("question-text").style.display = "none";
         document.getElementById("options-container").style.display = "none";
         document.getElementById("result-text").style.display = "block";
         const imageContainer = document.getElementById("image-container");
         const image = imageContainer.querySelector("img");
-        image.src = image;
+        image.src = option.nextQuestion;
         imageContainer.style.display = "block";
         imageContainer.style.opacity = "0"; // Reset opacity to 0
         setTimeout(() => {
@@ -214,6 +241,10 @@
             againButton.style.opacity = "1"; // Show the button slowly
           }, 100);
         }, 2000);
+      } else {
+        // If there's another question, proceed to it
+        currentQuestion = option.nextQuestion;
+        populateQuestion();
       }
     }
 
