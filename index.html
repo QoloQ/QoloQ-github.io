@@ -87,66 +87,84 @@
 
   <script>
     const questionTree = {
-      question: "Which of the following do you enjoy doing????",
-      options: [
-        {
-          text: "Reading",
-          nextQuestion: {
-            question: "What genre do you prefer?",
-            options: [
-              {
-                text: "Fantasy",
-                nextQuestion: {
-                  question: "Which 000 mythical creature do you find most fascinating?",
-                  options: [
-                    { text: "Dragons", nextQuestion: null },
-                    { text: "Unicorns", nextQuestion: null }
-                  ]
-                }
-              },
-              {
-                text: "Mystery",
-                nextQuestion: {
-                  question: "Do you enjoy solving puzzles?",
-                  options: [
-                    { text: "Yes", nextQuestion: null },
-                    { text: "No", nextQuestion: null }
-                  ]
-                }
+    question: "What do you prefer?",
+    options: [
+      {
+        text: "MOVEMENT",
+        nextQuestion: {
+          question: "Do you have kids?",
+          options: [
+            {
+              text: "YES",
+              nextQuestion: {
+                question: "Do you like adrenalin?",
+                options: [
+                  {text: "YES",
+                    nextQuestion: {
+                      question: "Are you more solo, or team player?",
+                      options: [
+                        {
+                          text: "SOLO",
+                          nextQuestion: "playground.jpg"
+                        },
+                        {
+                          text: "TEAM",
+                          nextQuestion: "sports.jpg"
+                        }
+                      ]
+                    },
+                },
+                  { 
+                    text: "NO",
+                    nextQuestion: null
+                  }
+                ]
               }
-            ]
-          }
-        },
-        {
-          text: "Painting",
-          nextQuestion: {
-            question: "What's your favorite painting style?",
-            options: [
-              {
-                text: "Impressionism",
-                nextQuestion: {
-                  question: "Which color palette do you prefer?",
-                  options: [
-                    { text: "Vibrant colors", nextQuestion: null },
-                    { text: "Soft pastels", nextQuestion: null }
-                  ]
-                }
-              },
-              {
-                text: "Abstract",
-                nextQuestion: {
-                  question: "Do you prefer structured or chaotic compositions?",
-                  options: [
-                    { text: "Structured", nextQuestion: null },
-                    { text: "Chaotic", nextQuestion: null }
-                  ]
-                }
+            },
+            {
+              text: "NO",
+              nextQuestion: {
+                question: "Do you enjoy solving puzzles?",
+                options: [
+                  { text: "Yes", nextQuestion: null },
+                  { text: "No", nextQuestion: null }
+                ]
               }
-            ]
-          }
+            }
+          ]
         }
-      ]
-    };
+      },
+      {
+        text: "RELAX",
+        nextQuestion: {
+          question: "What's your favorite painting style?",
+          options: [
+            {
+              text: "Impressionism",
+              nextQuestion: {
+                question: "Which color palette do you prefer?",
+                options: [
+                  { text: "Vibrant colors", nextQuestion: null },
+                  { text: "Soft pastels", nextQuestion: null }
+                ]
+              }
+            },
+            {
+              text: "Abstract",
+              nextQuestion: {
+                question: "Do you prefer structured or chaotic compositions?",
+                options: [
+                  { text: "Structured", nextQuestion: null },
+                  { text: "Chaotic", nextQuestion: null }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  };
+
 
     let currentQuestion = questionTree;
 
@@ -172,7 +190,7 @@
       });
     }
 
-    function handleAnswer(option) {
+    function handleAnswer(option, image) {
       if (option.nextQuestion) {
         currentQuestion = option.nextQuestion;
         populateQuestion();
@@ -182,7 +200,7 @@
         document.getElementById("result-text").style.display = "block";
         const imageContainer = document.getElementById("image-container");
         const image = imageContainer.querySelector("img");
-        image.src = "dog.jpg";
+        image.src = image;
         imageContainer.style.display = "block";
         imageContainer.style.opacity = "0"; // Reset opacity to 0
         setTimeout(() => {
